@@ -1,0 +1,65 @@
+<main role="main">
+  <div class="container">
+    <div class="row" style="margin-top: 74px !important;">
+      <div class="text-center">
+        <h2>Your matches - {{pagination?.totalItems}} found</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+        <div class="form-group">
+          <label for="minAge">Age From</label>
+          <input type="number" class="form-control" style="width: 70px" id="minAge" [(ngModel)]="userParams.MinAge"
+            name="minAge">
+        </div>
+
+        <div class="form-group">
+          <label for="maxAge">Age To</label>
+          <input type="number" class="form-control" style="width: 70px" id="maxAge" [(ngModel)]="userParams.MaxAge"
+            name="maxAge">
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Show: </label>
+          <select class="form-control" style="width: 130px" id="gender" name="gender" [(ngModel)]="userParams.gender">
+            <option *ngFor="let gender of genderList"  [value]="gender.v">
+              {{gender.d}}
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
+        <button type="button" class="btn btn-info" style="margin-left:10px" (click)="resetFilter()">Reset Filter</button>
+      </form>
+      <div class="pull-right">
+        <label style="margin-right: 10px">Order By: </label>
+        <div class="btn-group">
+          <button type="button" [(ngModel)]="userParams.orderBy" (click)="loadUsers()" name="orderBy" class="btn btn-primary" btnRadio="lastActive">Last Active</button>
+          <button type="button" [(ngModel)]="userParams.orderBy" (click)="loadUsers()" name="orderBy" class="btn btn-primary" btnRadio="created">Newest Members</button>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    <!-- HTML for ordering -->
+
+
+
+    <div class="row" style="margin-top: 74px !important;">
+      <div *ngFor="let user of users" class="col-md-3 col-sm-6">
+        <app-member-cards [user]="user"></app-member-cards>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="text-center">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+          [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+        </pagination>
+      </div>
+    </div>
+  </div>
+</main>

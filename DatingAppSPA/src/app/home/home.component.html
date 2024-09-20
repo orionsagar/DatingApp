@@ -1,0 +1,65 @@
+<main role="main">
+  <div class="container">
+    <span>{{ title }} app is running!</span>
+  </div>
+
+  <div class="container"></div>
+  <pre>
+        <!-- Form Valid: {{loginform.valid}}
+        Form Touched: {{loginform.touched}}
+        Form Dirty: {{loginform.dirty}}
+        Form Values: {{loginform.value}}
+        Username Valid: {{username.valid}}
+        Username Touched: {{username.touched}}
+        Username Dirty: {{username.dirty}}
+        Username Values: {{username.value}}
+        Password Valid: {{password.valid}}
+        Password Touched: {{password.touched}}
+        Password Dirty: {{password.dirty}}
+        Password Values: {{password.value}} -->
+    </pre>
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <!-- <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Hello, world!</h1>
+      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+    </div>
+  </div> -->
+
+  <div *ngIf="loginMode" class="container">
+    <div class="col-md-12 col-md-offset-8">
+      <app-login [valueLogFromHome]="values" (CancelLog)="cancelLogMode($event)"></app-login>
+    </div>
+  </div>
+
+
+  <div *ngIf="!displayMode" class="container">
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Find Your Match</h1>
+          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
+            etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+          <p>
+            <a class="btn btn-primary my-2" href="#" role="button" (click)='registerToggle()'>Register »</a>
+            <a href="#" role="button" (click)='loginToggle()' class="btn btn-secondary my-2">Login</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+  <div *ngIf="displayMode" class="container">
+    <div class="col-md-12 col-md-offset-8">
+
+      <app-register [valueFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"></app-register>
+
+    </div>
+  </div>
+
+
+</main>

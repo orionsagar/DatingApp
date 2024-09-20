@@ -1,0 +1,125 @@
+<main role="main">
+  <div class="container">
+
+    <div class="row" style="margin-top: 74px !important;">
+      <div class="col-sm">
+      </div>
+
+      <div class="col-sm">
+        <h4>Register</h4>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">I am a</label>
+            <div class="form-check radio-inline">
+              <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked" required>
+              <label class="form-check-label" for="validationFormCheck2">Male</label>
+            </div>
+            <div class="form-check mb-3 radio-inline">
+              <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
+              <label class="form-check-label" for="validationFormCheck3">Female</label>
+              <div class="invalid-feedback">More example invalid feedback text</div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input formControlName="username" name="username" class="form-control" id="exampleInputEmail1"
+              [ngClass]="{'has-error': f.username.errors && f.username.touched}">
+            <div class="help-block" *ngIf="f.username.errors && f.username.touched">
+              Username is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Known As</label>
+            <input formControlName="knownAs" name="knownAs" class="form-control" id="knownAs"
+              [ngClass]="{'has-error': f.knownAs.errors && f.knownAs.touched}">
+            <div class="help-block" *ngIf="f.knownAs.errors && f.knownAs.touched">
+              Known As is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Date of Birth</label>
+            <input formControlName="dateOfBirth" type="text" bsDatepicker [bsConfig]="bsConfig" name="dateOfBirth" class="form-control" id="dateOfBirth"
+              [ngClass]="{'has-error': f.knownAs.errors && f.knownAs.touched}">
+            <div class="help-block" *ngIf="f.knownAs.errors && f.knownAs.touched">
+              Date Of Birth is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">City</label>
+            <input formControlName="city" name="city" class="form-control" id="city"
+              [ngClass]="{'has-error': f.city.errors && f.city.touched}">
+            <div class="help-block" *ngIf="f.city.errors && f.city.touched">
+              City is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Country</label>
+            <input formControlName="country" name="country" class="form-control" id="country"
+              [ngClass]="{'has-error': f.country.errors && f.country.touched}">
+            <div class="help-block" *ngIf="f.country.errors && f.country.touched">
+              Country is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Password1">Password</label>
+            <input type="password" formControlName="password" name="password" class="form-control" id="Password1"
+              [ngClass]="{'has-error': f.password.errors && f.password.touched}">
+            <span class="help-block" *ngIf="f.password.errors && f.password.touched">
+              Password is required
+            </span>
+            <span class="help-block" *ngIf="f.password.errors?.minlength && f.password.touched">
+              Password must be at least 4 characters
+            </span>
+            <span class="help-block" *ngIf="f.password.errors?.maxlength && f.password.touched">
+              Password cannot exceed 8 characters
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" formControlName="confirmpassword" name="confirmpassword" class="form-control"
+              id="confirmpassword" [ngClass]="{'has-error': f.confirmpassword.errors && f.confirmpassword.touched || 
+                f.confirmpassword.errors?.mismatch && f.confirmpassword.touched}">
+            <span class="help-block" *ngIf="f.confirmpassword.errors && f.confirmpassword.touched">
+              Confirm Password is required
+            </span>
+            <span class="help-block" *ngIf="f.confirmpassword.errors?.mismatch && f.confirmpassword.touched">
+              Confirm Password must match password
+            </span>
+          </div>
+
+          <!-- <div class="form group">
+            <label for="favouriteValues">What is your favourite values?</label>
+            <select class="form-control" id="favouriteValues">
+              <option *ngFor="let value of valueFromHome" [value]="value.id">{{value.name}}</option>
+            </select>
+          </div> -->
+
+          <!-- <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div> -->
+
+          <!-- for desible button  [disabled]="!registerform.valid" -->
+          <div class="form-group text-center">
+            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Submit</button>
+            <button type="button" (click)='cancel()' class="btn btn-danger">Cancel</button>
+          </div>
+
+        </form>
+      </div>
+
+
+      <div class="col-sm">
+      </div>
+    </div>
+  </div>
+</main>
